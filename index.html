@@ -4,6 +4,7 @@
     <title>Trivia</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/javascripts/knockout-3.4.1.js" type="text/javascript" charset="utf-8"></script>
     <script src="/socket.io/socket.io.js"></script>
     <style> 
         body{
@@ -61,9 +62,8 @@
     </div>
     
     <script>
-    $(function(){
+    $(document).ready(function() {
          var socket = io.connect();
-    
          var $messageForm = $('#messageForm');
          var $message = $('#message');
          var $chat = $('#chat');
@@ -107,14 +107,20 @@
         });
         
       });
-//
-//    /* 
-//    This retrieves a question and posts it 
-//        $.getJSON("question", function(q) {
-//         $(".question").text(q.question);
-//     });
-//    */
-//    
+        
+    //knockout 
+      function Answer () {
+        var self=this;
+        self.user = ko.observable();
+        self.score = ko.observable();
+        self.sendAnswer = function() {
+          var data = {operation: self.user(), name : self.name()};
+          socket.emit('show answer', data);
+        }
+      }
+      var answer = new Answer();
+      ko.applyBindings(answer);       
+ 
     </script>
     </body>
 </html>

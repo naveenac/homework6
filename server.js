@@ -1,6 +1,17 @@
 var express = require('express');
 var app = express();
+var mongoose = require('mongoose');
 var server = require('http').createServer(app);
+var uri =  'mongodb://jyoon:helloavery@ds139267.mlab.com:39267/cpsc473'
+mongoose.connect(uri);
+
+// Create schema for questions
+var QuestionSchema = mongoose.Schema({
+    'question': String, 
+    'answerID': String
+});
+var Question = mongoose.model('Question', QuestionSchema);
+
 var io = require('socket.io').listen(server);
 users = [];
 connections = [];

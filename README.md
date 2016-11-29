@@ -1,2 +1,1 @@
-# homework6
-trivia game
+# hw5

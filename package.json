@@ -1,0 +1,11 @@
+{
+  "name": "iochat",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+   "socket.io":"*",
+   "express": "*"
+  }
+}
